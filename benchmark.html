@@ -1,0 +1,55 @@
+<html>
+  <body>
+
+    <h1>Nginx benchmark index</h1>
+
+    <h2>urandom</h2>
+    <p><i>Generate a file from /dev/urandom</i></p>
+    <form action="/urandom">
+      <label for="size">Size:</label>
+      <input type="number" name="size" value="2048">
+      <br>
+      <input type="submit">
+    </form>
+
+    <h2>zero</h2>
+    <p><i>Generate a file from /dev/zero</i></p>
+    <form action="/zero">
+      <label for="size">Size:</label>
+      <input type="number" name="size" value="2048">
+      <br>
+      <input type="submit">
+    </form>
+
+    <h2>sleep</h2>
+    <form action="/sleep">
+      <label for="time">Seconds:</label>
+      <input type="number" name="time" value="1">
+      <br>
+      <input type="submit">
+    </form>
+
+    <h2>download</h2>
+    <form action="/download">
+      <label for="size">Size:</label>
+      <input type="number" name="size" value="20480">
+      <label for="chunk_size">Chunk size:</label>
+      <input type="number" name="chunk_size" value="2048">
+      <br>
+      <input type="submit">
+    </form>
+
+    <!--
+    <h2>upload</h2>
+    <form action="/upload">
+      <label for="file">File:</label>
+      <input type="file" name="file">
+      <br>
+      <input type="submit">
+    </form>
+    -->
+
+    <hr>
+    <p>Made with ❤️ by <a href="https://cloud-mercato.com">Cloud Mercato</a></p>
+  </body>
+</html>
