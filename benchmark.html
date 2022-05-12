@@ -1,45 +1,144 @@
 <html>
+  <head>
+    <title>Nginx benchmark</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica";
+    }
+    #navbar {
+      background: #4baf50;
+      color: #FFF;
+      width: 100%;
+      height: 60px;
+    }
+    #navbar h1 {
+      margin: 0;
+      padding: 10;
+    }
+    #forms {
+      margin: 15;
+    }
+    #footer {
+      background: #4baf50;
+      color: #FFF;
+      width: 100%;
+      height: 40px;
+    }
+    #footer p {
+      margin: 0;
+      padding: 10;
+    }
+    #footer a {
+      color: #FFF;
+    }
+    input[type="submit"] {
+      color: #fff;
+      background-color: #28a745;
+      border-color: #28a745;
+      border-radius: 4px;
+    }
+    hr {
+      color: #4BAF50;
+    }
+    fieldset label {
+      font-weight: bold;
+    }
+    </style>
+  </head>
+
   <body>
 
-    <h1>Nginx benchmark index</h1>
+    <div id="navbar">
+    <h1>Nginx benchmark</h1>
+    </div>
 
-    <h2>urandom</h2>
-    <p><i>Generate a file from /dev/urandom</i></p>
+    <div id="forms">
+
+    <p>Nginx benchmark display a set of endpoint helping you to test your reverse-proxy</p>
+    <p>The endpoint aren't analysis tool in themselves but must be combined with the HTTP client of your choice.</p>
+
+    <hr>
+    <h2>/download</h2>
+    <div>
+    <p><i>Generate a file and download it</i></p>
+    </div>
+    <div>
+    <form action="/download">
+      <fieldset>
+      <legend>Try it</legend>
+      <label for="size">Size:</label>
+      <input type="number" id="size" name="size" value="20480">
+      <br>
+      <i>Total size of the file</i>
+
+      <br><br>
+      <label for="chunk_size">Chunk size:</label>
+      <input type="number" id="chunk_size" name="chunk_size" value="2048">
+      <br>
+      <i>Size of each chunk in the download stream</i>
+
+      <br><br>
+      <input type="submit">
+      </fieldset>
+    </form>
+    <pre>curl http://${host}/download?size=20480&chunk_size=2048</pre>
+    </div>
+
+    <hr>
+
+    <div>
+    <h2>/urandom</h2>
+    <p><i>Generate a file from /dev/urandom, just to stress CPU.</i></p>
     <form action="/urandom">
+      <fieldset>
+      <legend>Try it</legend>
       <label for="size">Size:</label>
       <input type="number" name="size" value="2048">
-      <br>
-      <input type="submit">
-    </form>
 
-    <h2>zero</h2>
-    <p><i>Generate a file from /dev/zero</i></p>
+      <br><br>
+      <input type="submit">
+      </fieldset>
+    </form>
+    <pre>curl http://${host}/urandom?size=2048</pre>
+    </div>
+
+    <hr>
+
+    <div>
+    <h2>/zero</h2>
+    <p><i>Generate a file from /dev/zero with a lower stress than urandom</i></p>
     <form action="/zero">
+      <fieldset>
       <label for="size">Size:</label>
       <input type="number" name="size" value="2048">
-      <br>
+      <br><br>
       <input type="submit">
+      </fieldset>
     </form>
+    <pre>curl http://${host}/zero?size=1</pre>
+    </div>
 
-    <h2>sleep</h2>
+    <hr>
+
+    <div>
+    <h2>/sleep</h2>
+    <p><i>Just wait x seconds</i></p>
     <form action="/sleep">
+      <fieldset>
       <label for="time">Seconds:</label>
       <input type="number" name="time" value="1">
-      <br>
-      <input type="submit">
-    </form>
 
-    <h2>download</h2>
-    <form action="/download">
-      <label for="size">Size:</label>
-      <input type="number" name="size" value="20480">
-      <label for="chunk_size">Chunk size:</label>
-      <input type="number" name="chunk_size" value="2048">
-      <br>
+      <br><br>
       <input type="submit">
+      </fieldset>
     </form>
+    <pre>curl http://${host}/sleep?time=1</pre>
+    </div>
 
     <!--
+    <hr>
+
     <h2>upload</h2>
     <form action="/upload">
       <label for="file">File:</label>
@@ -48,8 +147,10 @@
       <input type="submit">
     </form>
     -->
+    </div>
 
-    <hr>
+    <div id="footer">
     <p>Made with ❤️ by <a href="https://cloud-mercato.com">Cloud Mercato</a></p>
+    </div>
   </body>
 </html>
