@@ -26,12 +26,16 @@ We make to the choice to create a simple nginx site allowing to test the server 
 Install
 =======
 
+The following installation instructions cover installation on Ubuntu.
+It would likely be similar under other Debian variants.
+
 ::
 
+  apt-get update -y
   apt install -y nginx libnginx-mod-http-lua
 
-  cp benchmark.conf /path/to/sites/benchmark
-  # rm /path/to/sites/default
+  cp benchmark.conf /etc/nginx/sites-enabled/
+  rm /etc/nginx/sites-enabled/default
   cp benchmark.html /var/www/benchmark.html
 
   service nginx restart
